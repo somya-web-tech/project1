@@ -1,0 +1,9 @@
+* { box-sizing: border-box; margin: 0; font-family: system-ui, sans-serif; }
+body { background: #111; color: #eee; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+main { width: 90%; max-width: 420px; text-align: center; }
+h1 { font-size: 1.4rem; margin-bottom: 1rem; }
+#status { margin: 1rem 0; font-size: 1rem; }
+.panic { width: 100%; padding: 1.2rem; font-size: 1.3rem; background: crimson; color: #fff; border: none; border-radius: 8px; cursor: pointer; }
+.panic:active { background: darkred; }
+video { width: 100%; border-radius: 8px; margin-top: 1rem; }
+details { margin: 1rem 0; text-align: left; font-size: 0.9rem; }
