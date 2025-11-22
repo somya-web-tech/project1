@@ -1,34 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Voice Emergency Assistant</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="css/style.css" />
-  <!-- EmailJS SDK (only needed if you use EmailJS) -->
-  <script src="https://cdn.emailjs.com/sdk/3.2.0/email.min.js"></script>
+  <meta charset="UTF-8">
+  <title>PanicPulse – Simple</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111;
+      --primary: #ff5c00;
+      --text: #fff;
+      --muted: #999;
+      --radius: 16px;
+      --shadow: 0 12px 40px rgba(0,0,0,.6);
+    }
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', sans-serif;
+    }
+    body {
+        background: var(--bg);
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .card {
+        background: var(--surface);
+        width: 100%;
+        max-width: 380px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 40px 32px;
+        text-align: center;
+    }
+    h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 8px;
+    }
+    p {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+    input {
+        width: 100%;
+        padding: 14px 16px;
+        margin-bottom: 16px;
+        background: #242424;
+        border: 2px solid #333;
+        border-radius: 10px;
+        color: var(--text);
+        font-size: 16px;
+    }
+    input:focus {
+        outline: none;
+        border-color: var(--primary);
+    }
+    button {
+        width: 100%;
+        padding: 16px;
+        background: var(--primary);
+        color: var(--text);
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #ff7b3e;
+    }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>Voice-Powered Emergency Assistant</h1>
 
-    <div id="status">🎤 Initialising…</div>
+  <div class="card">
+    <h1>PanicPulse</h1>
+    <p>Your pulse, our priority</p>
 
-    <button id="silentBtn" class="panic">SILENT ALARM</button>
+    <input id="email" type="email" placeholder="Email">
+    <input id="phone" type="tel" placeholder="Phone">
 
-    <details>
-      <summary>Emergency contacts & instructions</summary>
-      <p>
-        Wake word: <strong>“Help me”</strong><br />
-        After the tone, 10-sec video will be recorded and alert sent.
-      </p>
-    </details>
+    <button onclick="handleContinue()">Continue</button>
+  </div>
 
-    <video id="preview" autoplay muted playsinline></video>
-    <canvas id="canvas" style="display:none"></canvas>
-  </main>
+  <script>
+    function handleContinue() {
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      if (!email || !phone) return alert("Enter email & phone");
 
-  <script src="js/recorder.js"></script>
-  <script src="js/app.js"></script>
+      // save locally (optional)
+      localStorage.setItem("panicpulse_user", JSON.stringify({ email, phone }));
+      alert("✓ Saved – welcome aboard!");
+      // redirect or show dashboard here
+      location.reload();
+    }
+  </script>
+
 </body>
 </html>
